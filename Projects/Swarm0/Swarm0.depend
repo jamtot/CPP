@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1460584782 source:/home/jamtot/CPP/Projects/Swarm0/main.cpp
+	<SFML/Graphics.hpp>
+	"Swarm.h"
+
+1460584893 /home/jamtot/CPP/Projects/Swarm0/include/Swarm.h
+	<SFML/Graphics.hpp>
+	<vector>
+	"Point2d.h"
+
+1460585058 /home/jamtot/CPP/Projects/Swarm0/include/Point2d.h
+	<SFML/Graphics.hpp>
+
+1460585089 source:/home/jamtot/CPP/Projects/Swarm0/src/Point2d.cpp
+	"Point2d.h"
+
+1460585109 source:/home/jamtot/CPP/Projects/Swarm0/src/Swarm.cpp
+	"Swarm.h"
+
