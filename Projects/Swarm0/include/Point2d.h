@@ -2,20 +2,20 @@
 #define POINT2D_H
 
 #include <SFML/Graphics.hpp>
+#include "Vector.h"
 
 class Point2d
 {
     public:
-        Point2d(int xpos, int ypos, sf::RenderWindow* window, int * windowsize);
+        Point2d(float xpos, float ypos, sf::RenderWindow* window, int * windowsize);
         virtual ~Point2d();
         void draw();
         void update();
     protected:
     private:
-        int m_x;
-        int m_y;
+        Vector *m_pos;
         sf::RenderWindow* m_window;
-        sf::RectangleShape shape;
+        sf::RectangleShape* m_shape;
         int * m_windowsize;
 
 };
