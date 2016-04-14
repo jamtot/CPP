@@ -13,14 +13,18 @@ class Ship
         void update();
     protected:
     private:
-        Vector* m_pos;
         float m_width, m_length;
         sf::RenderWindow* m_window;
         sf::ConvexShape* m_shape;
         int * m_windowsize;
 
-        Vector* m_acceleration;
+        float m_rotation;
         float m_rotation_speed;
+
+        Vector* m_pos;
+        Vector* m_acceleration;
+        Vector* m_velocity;
+        float m_max_speed;
 
 };
 

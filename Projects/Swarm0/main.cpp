@@ -8,7 +8,7 @@ int main()
     int windowsize[2] = {1600,1000};
     sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(windowsize[0], windowsize[1]), "SFML window");
     Ship *player = new Ship(windowsize[0]/2, windowsize[1]/2, 20.f, 30.f, window, windowsize);
-    Swarm *s = new Swarm(window, 100, windowsize);
+    Swarm *s = new Swarm(window, 10000, windowsize);
 
 	// Start the game loop
     while (window->isOpen())

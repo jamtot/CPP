@@ -3,8 +3,11 @@
 Ship::Ship(float x, float y, float width, float length, sf::RenderWindow* window, int* windowsize)
 {
     m_pos = new Vector(x,y);
-    m_acceleration = new Vector(0.f, 0.5f);
+    m_acceleration = new Vector(0.f, 1.f);
+    m_velocity = new Vector(0.f, 0.f);
+    m_rotation = 0.f;
     m_rotation_speed = 5.f;
+    m_max_speed = 5.f;
     m_width = width;
     m_length = length;
     m_window = window;
@@ -28,26 +31,38 @@ void Ship::draw(){
 }
 
 void Ship::update(){
+
+    Vector accel(0,0);
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        // Up key is pressed: move our ship
-        m_pos->add(m_acceleration);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        // Up key is pressed: move our ship
-        m_pos->sub(m_acceleration);
+        Vector thrust = *m_acceleration;
+        thrust.rotate(-m_rotation);
+        accel.add(thrust);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        m_acceleration->rotate(m_rotation_speed);
-        m_shape->rotate(-m_rotation_speed);
+        m_rotation-=m_rotation_speed;
+        //m_shape->rotate(-m_rotation_speed);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        m_acceleration->rotate(-m_rotation_speed);
-        m_shape->rotate(m_rotation_speed);
+        m_rotation+=m_rotation_speed;
+        //m_shape->rotate(m_rotation_speed);
     }
+
+    m_shape->setRotation(m_rotation);
+    m_velocity->add(accel);
+
+    //////////////////////////////
+	//slow by using reverse vector
+
+	Vector negVel = *m_velocity;
+	negVel.byScalar(0.05);
+
+	*m_velocity = *m_velocity - negVel;
+
+	//////////////////////////////
 
     //bounds checking
     if (m_pos->getX() > m_windowsize[0] - m_length/2) m_pos->setX(m_windowsize[0] - m_length/2);
@@ -56,5 +71,6 @@ void Ship::update(){
     else if (m_pos->getY() < m_length/2) m_pos->setY(m_length/2);
 
     //set position
+    m_pos->add(*m_velocity);
     m_shape->setPosition(m_pos->getX(), m_pos->getY());
 }
