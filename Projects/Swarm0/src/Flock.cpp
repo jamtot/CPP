@@ -32,7 +32,6 @@ void Flock::update()
     for (it = m_boids.begin(); it!=m_boids.end(); ++it)
     {
         (*it)->run(m_boids);
-        (*it)->update();
     }/**/
 }
 

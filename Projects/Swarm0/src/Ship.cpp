@@ -51,6 +51,8 @@ void Ship::update(){
         //m_shape->rotate(m_rotation_speed);
     }
 
+    //float rotangle = Vector::angleBetween((*m_pos-*m_velocity), Vector(0,0));
+
     m_shape->setRotation(m_rotation);
     m_velocity->add(accel);
 

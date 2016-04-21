@@ -40,6 +40,7 @@ class Boid
         float m_r;
         float m_maxforce; // Maximum steering force
         float m_maxspeed; // Maximum speed
+        float m_rotation;
 };
 
 #endif // BOID_H

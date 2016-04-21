@@ -4,14 +4,15 @@ Boid::Boid(float x, float y, sf::RenderWindow * window, int * windowsize)//, vec
 {
     m_pos = new Vector(x,y);
     m_acceleration = new Vector(0, 0);
+    m_rotation = 0.f;
 
     float angle = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(2*M_PI)));
     //float angle = 0;
     m_velocity = new Vector(cos(angle), sin(angle));
 
-    m_r = 2.0;
-    m_maxforce = 2;
-    m_maxspeed = 1.0;
+    m_r = 5.0;
+    m_maxforce = 5;
+    m_maxspeed = 2.0;
 
     m_window = window;
     m_windowsize = windowsize;
@@ -38,27 +39,30 @@ void Boid::update()
     m_velocity->add(*m_acceleration);
     // Limit speed
     m_velocity->limit(m_maxspeed);
-    m_pos->add(*m_velocity);
+
     // Reset accelertion to 0 each cycle
+    Vector vel(m_velocity->getX(), m_velocity->getY());
+    vel.normalise();
+    Vector pos(m_pos->getX(), m_pos->getY());
+    m_rotation -= Vector::angleBetween(pos, vel);
+
+    m_pos->add(*m_velocity);
+
+
+
+    //float angle = vel
+    //angle+=90;
+    m_shape->setRotation(m_rotation);
+
     m_acceleration->setVector(Vector(0,0));
 
     m_shape->setPosition(m_pos->getX(), m_pos->getY());
-    Vector vel = *m_velocity;
-    vel.normalise();
-
-    //atan2(v1.s_cross(v2), v1.dot(v2))
-    //Vector org(0,1);
-    //float dot = vel.getX()*org.getX() + vel.getY()*org.getY();      // dot product
-    //float det = vel.getX()*org.getY() - vel.getY()*org.getX();      // determinant
-    //float angle = atan2(det, dot);
-    //float angle = vel
-    //angle+=90;
-    //m_shape->setRotation(angle);
 }
 
 void Boid::run(vector<Boid*>& boids)
 {
     flock(boids);
+    update();
     borders();
 }
 
@@ -97,7 +101,7 @@ Vector Boid::seek(Vector target)
 
 Vector Boid::separate(vector<Boid*>& boids)
 {
-    float desiredseparation = 25.0f;
+    float desiredseparation = 50.0f;
     Vector steer(0, 0);
     int count = 0;
 
@@ -138,7 +142,7 @@ Vector Boid::separate(vector<Boid*>& boids)
 
 Vector Boid::align(vector<Boid*>& boids)
 {
-    float neighbordist = 50;
+    float neighbordist = 100;
     Vector sum(0, 0);
     int count = 0;
 
@@ -171,7 +175,7 @@ Vector Boid::align(vector<Boid*>& boids)
 
 Vector Boid::cohesion(vector<Boid*>& boids)
 {
-    float neighbordist = 50;
+    float neighbordist = 100;
     Vector sum(0, 0);   // Start with empty vector to accumulate all locations
     int count = 0;
 

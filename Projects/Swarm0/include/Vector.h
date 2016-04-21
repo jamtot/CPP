@@ -15,7 +15,7 @@ class Vector
 
         void rotate(float angle)//angle in degrees
         {
-            angle=angle/360.f*2.f*3.141592f;//convert to radians
+            angle=angle/360.f*2.f*M_PI;//convert to radians
             m_x = m_x*cos(angle)+m_y*sin(angle);
             m_y = m_x*sin(angle)+m_y*cos(angle);
         }
@@ -57,18 +57,25 @@ class Vector
             Vector temp(m_x*param, m_y*param);
             return (temp);
         }
-        static float dist(Vector v1, Vector v2)
-        {
-            return sqrt( ((v1.getX()-v2.getX())*(v1.getX()-v2.getX())) + ((v1.getY()-v2.getY())*(v1.getY()-v2.getY())));
-        }
-        static Vector sub(Vector v1, Vector v2){
-            return Vector(v1.getX()-v2.getX(), v1.getY()-v2.getY());
-        }
-        void add(Vector v){m_x+=v.getX();m_y+=v.getY();}
-        void sub(Vector v){m_x-=v.getX();m_y-=v.getY();}
 
+        static float dist(Vector v1, Vector v2){
+            return sqrt( ((v1.getX()-v2.getX())*(v1.getX()-v2.getX())) + ((v1.getY()-v2.getY())*(v1.getY()-v2.getY())));}
+
+        static Vector sub(Vector v1, Vector v2){
+            return Vector(v1.getX()-v2.getX(), v1.getY()-v2.getY());}
+
+        static float dot(Vector v1, Vector v2){
+            return (v1.getX()*v2.getX()) + (v1.getY()*v2.getY());}
+
+        static float det(Vector v1, Vector v2){
+            return (v1.getX()*v2.getY()) - (v1.getY()*v2.getX());}
+
+        static float angleBetween(Vector v1, Vector v2){
+            return atan2(det(v1,v2), dot(v1,v2));}
 
         Vector getPos(){return Vector(m_x, m_y);}
+        void add(Vector v){m_x+=v.getX();m_y+=v.getY();}
+        void sub(Vector v){m_x-=v.getX();m_y-=v.getY();}
         float getX(){return m_x;}
         float getY(){return m_y;}
         void setVector(Vector v){m_x=v.getX();m_y=v.getY();}
