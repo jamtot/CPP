@@ -43,9 +43,12 @@
 		</Compiler>
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Point2d.h" />
+		<Unit filename="include/Ship.h" />
 		<Unit filename="include/Swarm.h" />
+		<Unit filename="include/Vector.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Point2d.cpp" />
+		<Unit filename="src/Ship.cpp" />
 		<Unit filename="src/Swarm.cpp" />
 		<Extensions>
 			<code_completion />

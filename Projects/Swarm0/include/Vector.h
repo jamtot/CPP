@@ -19,17 +19,29 @@ class Vector
             m_x = m_x*cos(angle)+m_y*sin(angle);
             m_y = m_x*sin(angle)+m_y*cos(angle);
         }
+        float mag()
+        {
+            return float(sqrt((m_x*m_x)+(m_y*m_y)));
+        }
         void normalise()
         {
-            float len = sqrt((m_x*m_x)+(m_y*m_y));
-            m_x = m_x/len;
-            m_y = m_x/len;
+            m_x = m_x/mag();
+            m_y = m_x/mag();
         }
         void byScalar(double scalar){
             m_x*=scalar;
             m_y*=scalar;
         }
 
+        void div(double scalar){
+            m_x/=scalar;
+            m_y/=scalar;
+        }
+
+        void limit(double vlimit){
+            normalise();
+            byScalar(vlimit);
+        }
         Vector operator+(Vector param)
         {
             Vector temp(m_x+param.getX(), m_y+param.getY());
@@ -45,8 +57,17 @@ class Vector
             Vector temp(m_x*param, m_y*param);
             return (temp);
         }
+        static float dist(Vector v1, Vector v2)
+        {
+            return sqrt( ((v1.getX()-v2.getX())*(v1.getX()-v2.getX())) + ((v1.getY()-v2.getY())*(v1.getY()-v2.getY())));
+        }
+        static Vector sub(Vector v1, Vector v2){
+            return Vector(v1.getX()-v2.getX(), v1.getY()-v2.getY());
+        }
         void add(Vector v){m_x+=v.getX();m_y+=v.getY();}
         void sub(Vector v){m_x-=v.getX();m_y-=v.getY();}
+
+
         Vector getPos(){return Vector(m_x, m_y);}
         float getX(){return m_x;}
         float getY(){return m_y;}

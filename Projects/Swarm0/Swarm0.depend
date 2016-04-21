@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1460647918 source:/home/jamtot/CPP/Projects/Swarm0/main.cpp
+1461257052 source:/home/jamtot/CPP/Projects/Swarm0/main.cpp
 	<SFML/Graphics.hpp>
 	"Swarm.h"
 	"Ship.h"
+	"Flock.h"
 
 1460647048 /home/jamtot/CPP/Projects/Swarm0/include/Swarm.h
 	<SFML/Graphics.hpp>
@@ -13,7 +14,7 @@
 	<SFML/Graphics.hpp>
 	"Vector.h"
 
-1460640775 source:/home/jamtot/CPP/Projects/Swarm0/src/Point2d.cpp
+1461243774 source:/home/jamtot/CPP/Projects/Swarm0/src/Point2d.cpp
 	"Point2d.h"
 
 1460585109 source:/home/jamtot/CPP/Projects/Swarm0/src/Swarm.cpp
@@ -23,9 +24,26 @@
 	<SFML/Graphics.hpp>
 	"Vector.h"
 
-1460649423 source:/home/jamtot/CPP/Projects/Swarm0/src/Ship.cpp
+1461256978 source:/home/jamtot/CPP/Projects/Swarm0/src/Ship.cpp
 	"Ship.h"
 
-1460653480 /home/jamtot/CPP/Projects/Swarm0/include/Vector.h
+1461257427 /home/jamtot/CPP/Projects/Swarm0/include/Vector.h
 	"math.h"
+
+1461251071 /home/jamtot/CPP/Projects/Swarm0/include/Flock.h
+	<vector>
+	"Boid.h"
+	<SFML/Graphics.hpp>
+
+1461257068 /home/jamtot/CPP/Projects/Swarm0/include/Boid.h
+	"Vector.h"
+	<SFML/Graphics.hpp>
+	<math.h>
+	<vector>
+
+1461255892 source:/home/jamtot/CPP/Projects/Swarm0/src/Boid.cpp
+	"Boid.h"
+
+1461256128 source:/home/jamtot/CPP/Projects/Swarm0/src/Flock.cpp
+	"Flock.h"
 
