@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1464638582 source:/home/jamtot/CPP/Projects/The Coding Dead/Asteroids/main.cpp
+	<SFML/Graphics.hpp>
+	"Ship.h"
+
+1464638705 /home/jamtot/CPP/Projects/The Coding Dead/Asteroids/include/Ship.h
+	<SFML/Graphics.hpp>
+	"Vector.h"
+
+1464638634 /home/jamtot/CPP/Projects/The Coding Dead/Asteroids/include/Vector.h
+	<math.h>
+
+1464638582 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
+	<SFML/Graphics.hpp>
+	"Ship.h"
+
+1464638859 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
+	<SFML/Graphics.hpp>
+	"Vector.h"
+
+1464638634 /home/jamtot/CPP/Projects/Asteroids/include/Vector.h
+	<math.h>
+
+1464638554 source:/home/jamtot/CPP/Projects/Asteroids/src/Ship.cpp
+	"Ship.h"
+
