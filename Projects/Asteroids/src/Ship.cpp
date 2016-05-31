@@ -17,8 +17,10 @@ Ship::Ship(float x, float y, float width, float length, sf::RenderWindow* window
     m_shape->setPoint(1, sf::Vector2f(-(m_width/2),(-m_length/2)));
     m_shape->setPoint(2, sf::Vector2f(0,(m_length/2)));
     m_shape->setPoint(3, sf::Vector2f((m_width/2),(-m_length/2)));
-    m_shape->setFillColor(sf::Color(255,0,255));
+    m_shape->setFillColor(sf::Color(0,255,255));
     m_shape->setPosition(*m_pos);
+
+    m_bullet_vec = new vector<Bullet>;
 }
 
 Ship::~Ship()
@@ -26,8 +28,24 @@ Ship::~Ship()
     //dtor
 }
 
-void Ship::draw(){
+void Ship::draw()
+{
     m_window->draw(*m_shape);
+
+    vector<Bullet>::iterator it;
+    for (it = m_bullet_vec->begin(); it != m_bullet_vec->end(); ++it)
+    {
+        (*it).draw();
+    }
+}
+
+void Ship::fire_bullet()
+{
+    m_bullet_vec->push_back( Bullet(*m_pos, sf::Vector2f(0,0), 2.0f, m_window, m_windowsize) );
+
+    //classic spacebar front firing bullet
+
+    //geometry wars mouse click directional type bullet
 }
 
 void Ship::update(){
@@ -47,6 +65,11 @@ void Ship::update(){
     {
         m_rotation+=m_rotation_speed;
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        fire_bullet();
+    }
+
 
     float theta = DEGREES_TO_RADIANS(m_rotation);
     float cs = cos(theta);

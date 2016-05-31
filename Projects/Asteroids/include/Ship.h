@@ -2,9 +2,13 @@
 #define SHIP_H
 
 #include <SFML/Graphics.hpp>
-#include "Vector.h"
+#include "Bullet.h"
+#include <vector>
+#include <math.h>
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
+using namespace std;
 
 class Ship
 {
@@ -13,6 +17,7 @@ class Ship
         virtual ~Ship();
         void draw();
         void update();
+        void fire_bullet();
     protected:
     private:
         float m_width, m_length;
@@ -29,6 +34,7 @@ class Ship
         float m_max_speed;
 
         //add vector of bullets
+        vector<Bullet> *m_bullet_vec;
 };
 
 #endif // SHIP_H
