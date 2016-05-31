@@ -21,6 +21,9 @@ Ship::Ship(float x, float y, float width, float length, sf::RenderWindow* window
     m_shape->setPosition(*m_pos);
 
     m_bullet_vec = new vector<Bullet>;
+    m_firing = false;
+    m_shoot_time = 50; // delay timer for shots if held down
+    m_timer = 0;
 }
 
 Ship::~Ship()
@@ -39,13 +42,12 @@ void Ship::draw()
     }
 }
 
-void Ship::fire_bullet()
+void Ship::fire_bullet(sf::Vector2f dir)
 {
-    m_bullet_vec->push_back( Bullet(*m_pos, sf::Vector2f(0,0), 2.0f, m_window, m_windowsize) );
-
-    //classic spacebar front firing bullet
-
-    //geometry wars mouse click directional type bullet
+    float len = sqrt((dir.x * dir.x) + (dir.y * dir.y));
+    dir.x = dir.x/len;
+    dir.y = dir.y/len;
+    m_bullet_vec->push_back( Bullet(*m_pos, dir, 5.f, 2.f, m_window, m_windowsize) );
 }
 
 void Ship::update(){
@@ -65,16 +67,12 @@ void Ship::update(){
     {
         m_rotation+=m_rotation_speed;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        fire_bullet();
-    }
-
 
     float theta = DEGREES_TO_RADIANS(m_rotation);
     float cs = cos(theta);
     float sn = sin(theta);
 
+    // rotate the vector
     sf::Vector2f newAccel;
     newAccel.x = accel.x * cs - accel.y * sn;
     newAccel.y = accel.x * sn + accel.y * cs;
@@ -99,4 +97,41 @@ void Ship::update(){
     //set position
     *m_pos+=*m_velocity;
     m_shape->setPosition(*m_pos);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_firing)
+    { // if the mouse is clicked, use mouse position for shot
+        sf::Vector2f position = (sf::Vector2f)sf::Mouse::getPosition(*m_window);
+        position-=*m_pos;
+        fire_bullet(position);
+        m_firing = true;
+        m_timer = m_shoot_time;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !m_firing)
+    { // if space is pressed, use ship direction for shot
+        sf::Vector2f dir(0,1);
+        sf::Vector2f rotdir;
+        rotdir.x = dir.x * cs - dir.y * sn;
+        rotdir.y = dir.x * sn + dir.y * cs;
+        fire_bullet(rotdir);
+        m_firing = true;
+        m_timer = m_shoot_time;
+    }
+    if (!sf::Mouse::isButtonPressed(sf::Mouse::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        m_firing = false;
+    }
+
+
+    if (m_timer > 0)
+    { m_timer--; }
+    else if (m_timer == 0)
+    {
+        m_firing = false;
+    }
+
+    vector<Bullet>::iterator it;
+    for (it = m_bullet_vec->begin(); it != m_bullet_vec->end(); ++it)
+    {
+        (*it).update();
+    }
 }

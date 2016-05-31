@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(sf::Vector2f pos, sf::Vector2f dir, float bsize, sf::RenderWindow* window, int* windowsize)
+Bullet::Bullet(sf::Vector2f pos, sf::Vector2f dir, float speed, float bsize, sf::RenderWindow* window, int* windowsize)
 {
     m_pos = new sf::Vector2f(pos);
     m_dir = new sf::Vector2f(dir);
@@ -11,7 +11,8 @@ Bullet::Bullet(sf::Vector2f pos, sf::Vector2f dir, float bsize, sf::RenderWindow
     m_shape->setFillColor(sf::Color(255,0,0));
     m_shape->setPosition(*m_pos);
 
-    m_speed = 1.0f;
+    m_speed = speed;
+    *m_dir=(*m_dir)*m_speed;
 }
 
 Bullet::~Bullet()
@@ -26,5 +27,6 @@ void Bullet::draw()
 
 void Bullet::update()
 {
-
+    *m_pos+=*m_dir;
+    m_shape->setPosition(*m_pos);
 }

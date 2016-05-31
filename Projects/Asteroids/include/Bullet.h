@@ -6,7 +6,7 @@
 class Bullet
 {
     public:
-        Bullet(sf::Vector2f pos, sf::Vector2f dir, float bsize, sf::RenderWindow* window, int* windowsize);
+        Bullet(sf::Vector2f pos, sf::Vector2f dir, float speed, float bsize, sf::RenderWindow* window, int* windowsize);
         virtual ~Bullet();
         void draw();
         void update();

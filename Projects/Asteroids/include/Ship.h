@@ -17,7 +17,7 @@ class Ship
         virtual ~Ship();
         void draw();
         void update();
-        void fire_bullet();
+        void fire_bullet(sf::Vector2f dir);
     protected:
     private:
         float m_width, m_length;
@@ -35,6 +35,9 @@ class Ship
 
         //add vector of bullets
         vector<Bullet> *m_bullet_vec;
+        bool m_firing;
+        int m_shoot_time;
+        int m_timer;
 };
 
 #endif // SHIP_H
