@@ -14,7 +14,7 @@
 	<SFML/Graphics.hpp>
 	"Ship.h"
 
-1464638859 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
+1464692822 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
 	<SFML/Graphics.hpp>
 	"Vector.h"
 
@@ -23,4 +23,9 @@
 
 1464638554 source:/home/jamtot/CPP/Projects/Asteroids/src/Ship.cpp
 	"Ship.h"
+
+1464638823 source:/home/jamtot/CPP/Projects/Asteroids/src/Bullet.cpp
+	"Bullet.h"
+
+1464638792 /home/jamtot/CPP/Projects/Asteroids/include/Bullet.h
 

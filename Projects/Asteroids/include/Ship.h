@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "Vector.h"
 
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
 class Ship
 {
     public:
@@ -21,9 +23,9 @@ class Ship
         float m_rotation;
         float m_rotation_speed;
 
-        Vector* m_pos;
-        Vector* m_acceleration;
-        Vector* m_velocity;
+        sf::Vector2f* m_pos;
+        sf::Vector2f* m_acceleration;
+        sf::Vector2f* m_velocity;
         float m_max_speed;
 
         //add vector of bullets
