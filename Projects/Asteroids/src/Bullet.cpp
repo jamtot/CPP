@@ -13,6 +13,7 @@ Bullet::Bullet(sf::Vector2f pos, sf::Vector2f dir, float speed, float bsize, sf:
 
     m_speed = speed;
     *m_dir=(*m_dir)*m_speed;
+    m_alive = true;
 }
 
 Bullet::~Bullet()
@@ -22,11 +23,17 @@ Bullet::~Bullet()
 
 void Bullet::draw()
 {
-    m_window->draw(*m_shape);
+    if (m_alive)
+        m_window->draw(*m_shape);
 }
 
 void Bullet::update()
 {
     *m_pos+=*m_dir;
     m_shape->setPosition(*m_pos);
+    if ( m_pos->x < 0 || m_pos->x > m_windowsize[0]
+        || m_pos->y < 0 || m_pos->y > m_windowsize[1])
+        m_alive = false;
 }
+
+bool Bullet::isAlive() { return m_alive; }

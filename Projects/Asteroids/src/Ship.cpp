@@ -7,7 +7,7 @@ Ship::Ship(float x, float y, float width, float length, sf::RenderWindow* window
     m_velocity = new sf::Vector2f(0.f, 0.f);
     m_rotation = 0.f;
     m_rotation_speed = 5.f;
-    m_max_speed = 5.f;
+    m_max_speed = 7.f;
     m_width = width;
     m_length = length;
     m_window = window;
@@ -48,6 +48,7 @@ void Ship::fire_bullet(sf::Vector2f dir)
     dir.x = dir.x/len;
     dir.y = dir.y/len;
     m_bullet_vec->push_back( Bullet(*m_pos, dir, 10.f, 2.f, m_window, m_windowsize) );
+    //cout << m_bullet_vec->size() << endl;
 }
 
 void Ship::update(){
@@ -96,8 +97,6 @@ void Ship::update(){
     }
 
 
-
-
     //bounds checking
     if (m_pos->x > m_windowsize[0] - m_length/2) m_pos->x = (m_windowsize[0] - m_length/2);
     else if (m_pos->x < m_length/2) m_pos->x = m_length/2;
@@ -142,6 +141,14 @@ void Ship::update(){
     vector<Bullet>::iterator it;
     for (it = m_bullet_vec->begin(); it != m_bullet_vec->end(); ++it)
     {
-        (*it).update();
+        if ((*it).isAlive())
+            (*it).update();
+        else
+        {
+            //remove dead bullets, decrement the iterator
+            m_bullet_vec->erase(it);
+            --it;
+        }
+
     }
 }

@@ -10,6 +10,7 @@ class Bullet
         virtual ~Bullet();
         void draw();
         void update();
+        bool isAlive();
     protected:
     private:
         float m_size;
@@ -20,6 +21,7 @@ class Bullet
         sf::Vector2f* m_pos;
         sf::Vector2f* m_dir;
         float m_speed;
+        bool m_alive;
 };
 
 #endif // BULLET_H

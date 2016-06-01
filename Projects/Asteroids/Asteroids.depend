@@ -10,29 +10,39 @@
 1464638634 /home/jamtot/CPP/Projects/The Coding Dead/Asteroids/include/Vector.h
 	<math.h>
 
-1464638582 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
+1464814229 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
 	<SFML/Graphics.hpp>
 	"Ship.h"
+	"Asteroid.h"
 
-1464808317 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
+1464812912 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
 	<SFML/Graphics.hpp>
 	"Bullet.h"
 	<vector>
 	<math.h>
 	"Funcs.h"
+	<iostream>
 
 1464638634 /home/jamtot/CPP/Projects/Asteroids/include/Vector.h
 	<math.h>
 
-1464724758 source:/home/jamtot/CPP/Projects/Asteroids/src/Ship.cpp
+1464813091 source:/home/jamtot/CPP/Projects/Asteroids/src/Ship.cpp
 	"Ship.h"
 
-1464724789 source:/home/jamtot/CPP/Projects/Asteroids/src/Bullet.cpp
+1464812825 source:/home/jamtot/CPP/Projects/Asteroids/src/Bullet.cpp
 	"Bullet.h"
 
-1464723569 /home/jamtot/CPP/Projects/Asteroids/include/Bullet.h
+1464812032 /home/jamtot/CPP/Projects/Asteroids/include/Bullet.h
 	<SFML/Graphics.hpp>
 
-1464809934 /home/jamtot/CPP/Projects/Asteroids/include/Funcs.h
+1464814421 /home/jamtot/CPP/Projects/Asteroids/include/Funcs.h
 	<SFML/Graphics.hpp>
+	<math.h>
+
+1464814393 /home/jamtot/CPP/Projects/Asteroids/include/Asteroid.h
+	<SFML/Graphics.hpp>
+
+1464814404 source:/home/jamtot/CPP/Projects/Asteroids/src/Asteroid.cpp
+	"Asteroid.h"
+	"Funcs.h"
 

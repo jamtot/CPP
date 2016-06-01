@@ -2,7 +2,7 @@
 #define FUNCS_H
 
 #include <SFML/Graphics.hpp>
-
+#include <math.h>
 
 class Funcs
 {
@@ -17,6 +17,10 @@ class Funcs
         {
             float len = GetVecLen(v);
             return sf::Vector2f(v.x/len,v.y/len);
+        }
+        static inline float ZeroToX(float X)
+        {
+            return static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/X));
         }
 
     protected:
