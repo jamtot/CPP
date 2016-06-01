@@ -14,11 +14,12 @@
 	<SFML/Graphics.hpp>
 	"Ship.h"
 
-1464725418 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
+1464808317 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
 	<SFML/Graphics.hpp>
 	"Bullet.h"
 	<vector>
 	<math.h>
+	"Funcs.h"
 
 1464638634 /home/jamtot/CPP/Projects/Asteroids/include/Vector.h
 	<math.h>
@@ -30,5 +31,8 @@
 	"Bullet.h"
 
 1464723569 /home/jamtot/CPP/Projects/Asteroids/include/Bullet.h
+	<SFML/Graphics.hpp>
+
+1464809934 /home/jamtot/CPP/Projects/Asteroids/include/Funcs.h
 	<SFML/Graphics.hpp>
 

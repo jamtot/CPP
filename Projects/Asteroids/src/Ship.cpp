@@ -47,18 +47,13 @@ void Ship::fire_bullet(sf::Vector2f dir)
     float len = sqrt((dir.x * dir.x) + (dir.y * dir.y));
     dir.x = dir.x/len;
     dir.y = dir.y/len;
-    m_bullet_vec->push_back( Bullet(*m_pos, dir, 5.f, 2.f, m_window, m_windowsize) );
+    m_bullet_vec->push_back( Bullet(*m_pos, dir, 10.f, 2.f, m_window, m_windowsize) );
 }
 
 void Ship::update(){
 
     sf::Vector2f accel(0,0);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        sf::Vector2f thrust = *m_acceleration;
-        accel+=thrust;
-    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         m_rotation-=m_rotation_speed;
@@ -68,25 +63,40 @@ void Ship::update(){
         m_rotation+=m_rotation_speed;
     }
 
-    float theta = DEGREES_TO_RADIANS(m_rotation);
-    float cs = cos(theta);
-    float sn = sin(theta);
+        m_shape->setRotation(m_rotation);
+        float theta = DEGREES_TO_RADIANS(m_rotation);
+        float cs = cos(theta);
+        float sn = sin(theta);
 
-    // rotate the vector
-    sf::Vector2f newAccel;
-    newAccel.x = accel.x * cs - accel.y * sn;
-    newAccel.y = accel.x * sn + accel.y * cs;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        sf::Vector2f thrust = *m_acceleration;
+        accel+=thrust;
+        // rotate the vector
+        sf::Vector2f newAccel;
+        newAccel.x = accel.x * cs - accel.y * sn;
+        newAccel.y = accel.x * sn + accel.y * cs;
+        *m_velocity+=newAccel;
 
-    m_shape->setRotation(m_rotation);
-    *m_velocity+=newAccel;
+        if (Funcs::GetVecLen(*m_velocity) > m_max_speed)
+            *m_velocity=Funcs::Normalise(*m_velocity)*m_max_speed;
+    }
+    else
+    {
+        if (Funcs::GetVecLen(*m_velocity) > 0.01f)
+        {
+            //slow by using reverse vector
+            sf::Vector2f negVel = *m_velocity * 0.05f;
+            *m_velocity = *m_velocity - negVel;
+        }
+        else
+        {
+            *m_velocity=sf::Vector2f(0.f,0.f);
+        }
+    }
 
-    //////////////////////////////
-	//slow by using reverse vector
 
-	sf::Vector2f negVel = *m_velocity * 0.05f;
-	*m_velocity = *m_velocity - negVel;
 
-	//////////////////////////////
 
     //bounds checking
     if (m_pos->x > m_windowsize[0] - m_length/2) m_pos->x = (m_windowsize[0] - m_length/2);
