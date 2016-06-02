@@ -10,10 +10,10 @@
 1464638634 /home/jamtot/CPP/Projects/The Coding Dead/Asteroids/include/Vector.h
 	<math.h>
 
-1464814229 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
+1464898852 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
 	<SFML/Graphics.hpp>
 	"Ship.h"
-	"Asteroid.h"
+	"AsteroidFactory.h"
 
 1464812912 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
 	<SFML/Graphics.hpp>
@@ -39,10 +39,17 @@
 	<SFML/Graphics.hpp>
 	<math.h>
 
-1464814393 /home/jamtot/CPP/Projects/Asteroids/include/Asteroid.h
+1464899413 /home/jamtot/CPP/Projects/Asteroids/include/Asteroid.h
 	<SFML/Graphics.hpp>
 
-1464814404 source:/home/jamtot/CPP/Projects/Asteroids/src/Asteroid.cpp
+1464899703 source:/home/jamtot/CPP/Projects/Asteroids/src/Asteroid.cpp
 	"Asteroid.h"
 	"Funcs.h"
+
+1464899793 /home/jamtot/CPP/Projects/Asteroids/include/AsteroidFactory.h
+	<vector>
+	"Asteroid.h"
+
+1464899277 source:/home/jamtot/CPP/Projects/Asteroids/src/AsteroidFactory.cpp
+	"AsteroidFactory.h"
 

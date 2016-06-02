@@ -10,6 +10,7 @@ class Asteroid
         virtual ~Asteroid();
         void draw();
         void update();
+        bool isAlive();
     protected:
     private:
         sf::RenderWindow* m_window;
@@ -19,6 +20,7 @@ class Asteroid
         sf::Vector2f* m_velocity;
         float m_size;
         float m_max_speed;
+        bool m_alive;
 };
 
 #endif // ASTEROID_H

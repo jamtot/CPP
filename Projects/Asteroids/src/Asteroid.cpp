@@ -22,6 +22,7 @@ Asteroid::Asteroid(float x, float y, float asize, float maxspeed, sf::RenderWind
     m_shape->setFillColor(sf::Color((rand()%128)+128,(rand()%128)+128,(rand()%128)+128));
     m_shape->setPosition(*m_pos);
 
+    m_alive = true;
 
     //stop asteroids spawning ON player
     //make them spawn offscreen and make sure they come on
@@ -35,11 +36,20 @@ Asteroid::~Asteroid()
 
 void Asteroid::draw()
 {
-    m_window->draw(*m_shape);
+    if (m_alive)
+        m_window->draw(*m_shape);
 }
 
 void Asteroid::update()
 {
     *m_pos+=*m_velocity;
     m_shape->setPosition(*m_pos);
+    if ( m_pos->x < 0-m_size || m_pos->x > m_windowsize[0]+m_size
+        || m_pos->y < 0-m_size || m_pos->y > m_windowsize[1]+m_size)
+        m_alive = false;
+}
+
+bool Asteroid::isAlive()
+{
+    return m_alive;
 }
