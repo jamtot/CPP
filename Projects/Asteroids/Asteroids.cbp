@@ -45,11 +45,13 @@
 		</Compiler>
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Asteroid.h" />
+		<Unit filename="include/AsteroidFactory.h" />
 		<Unit filename="include/Bullet.h" />
 		<Unit filename="include/Funcs.h" />
 		<Unit filename="include/Ship.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Asteroid.cpp" />
+		<Unit filename="src/AsteroidFactory.cpp" />
 		<Unit filename="src/Bullet.cpp" />
 		<Unit filename="src/Ship.cpp" />
 		<Extensions>

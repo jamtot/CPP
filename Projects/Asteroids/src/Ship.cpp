@@ -24,6 +24,8 @@ Ship::Ship(float x, float y, float width, float length, sf::RenderWindow* window
     m_firing = false;
     m_shoot_time = 50; // delay timer for shots if held down
     m_timer = 0;
+
+    m_alive = true;
 }
 
 Ship::~Ship()
@@ -33,7 +35,8 @@ Ship::~Ship()
 
 void Ship::draw()
 {
-    m_window->draw(*m_shape);
+    if (m_alive)
+        m_window->draw(*m_shape);
 
     vector<Bullet>::iterator it;
     for (it = m_bullet_vec->begin(); it != m_bullet_vec->end(); ++it)
@@ -55,11 +58,11 @@ void Ship::update(){
 
     sf::Vector2f accel(0,0);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         m_rotation-=m_rotation_speed;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         m_rotation+=m_rotation_speed;
     }
@@ -69,7 +72,7 @@ void Ship::update(){
         float cs = cos(theta);
         float sn = sin(theta);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         sf::Vector2f thrust = *m_acceleration;
         accel+=thrust;
@@ -98,10 +101,20 @@ void Ship::update(){
 
 
     //bounds checking
-    if (m_pos->x > m_windowsize[0] - m_length/2) m_pos->x = (m_windowsize[0] - m_length/2);
+    /*if (m_pos->x > m_windowsize[0] - m_length/2) m_pos->x = (m_windowsize[0] - m_length/2);
     else if (m_pos->x < m_length/2) m_pos->x = m_length/2;
     if (m_pos->y > m_windowsize[1] - m_length/2) m_pos->y = (m_windowsize[1] - m_length/2);
-    else if (m_pos->y < m_length/2) m_pos->y = m_length/2;
+    else if (m_pos->y < m_length/2) m_pos->y = m_length/2;*/
+
+    if (m_pos->x < 0-m_length/2)
+        m_pos->x = m_windowsize[0]+m_length/2;
+    else if (m_pos->x > m_windowsize[0]+m_length/2)
+        m_pos->x = 0-m_length/2;
+
+    if (m_pos->y < 0-m_length/2)
+        m_pos->y = m_windowsize[1]+m_length/2;
+    else if (m_pos->y > m_windowsize[1]+m_length/2)
+        m_pos->y = 0-m_length/2;
 
     //set position
     *m_pos+=*m_velocity;

@@ -41,6 +41,8 @@ class Ship
         bool m_firing;
         int m_shoot_time;
         int m_timer;
+
+        bool m_alive;
 };
 
 #endif // SHIP_H
