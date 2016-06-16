@@ -37,3 +37,5 @@ void Bullet::update()
 }
 
 bool Bullet::isAlive() { return m_alive; }
+sf::Vector2f * Bullet::getPos() { return m_pos; }
+void Bullet::kill() { m_alive = false; }

@@ -48,6 +48,7 @@
 		<Unit filename="include/AsteroidFactory.h" />
 		<Unit filename="include/Bullet.h" />
 		<Unit filename="include/Funcs.h" />
+		<Unit filename="include/Particle.h" />
 		<Unit filename="include/Ship.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Asteroid.cpp" />

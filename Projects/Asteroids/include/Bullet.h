@@ -11,6 +11,8 @@ class Bullet
         void draw();
         void update();
         bool isAlive();
+        sf::Vector2f * getPos();
+        void kill();
     protected:
     private:
         float m_size;

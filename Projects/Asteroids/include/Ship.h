@@ -21,6 +21,7 @@ class Ship
         void draw();
         void update();
         void fire_bullet(sf::Vector2f dir);
+        vector<Bullet> *get_bullets();
     protected:
     private:
         float m_width, m_length;

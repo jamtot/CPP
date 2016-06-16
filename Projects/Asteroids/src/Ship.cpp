@@ -165,3 +165,6 @@ void Ship::update(){
 
     }
 }
+
+
+vector<Bullet> * Ship::get_bullets(){return m_bullet_vec;}

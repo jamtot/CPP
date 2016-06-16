@@ -63,3 +63,15 @@ bool Asteroid::isAlive()
 {
     return m_alive;
 }
+
+int Asteroid::getSize()
+{
+    return m_size;
+}
+
+sf::Vector2f* Asteroid::getPos()
+{
+    return m_pos;
+}
+
+void Asteroid::kill() { m_alive = false; }

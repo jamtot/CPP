@@ -11,6 +11,9 @@ class Asteroid
         void draw();
         void update();
         bool isAlive();
+        sf::Vector2f* getPos();
+        int getSize();
+        void kill();
     protected:
     private:
         sf::RenderWindow* m_window;

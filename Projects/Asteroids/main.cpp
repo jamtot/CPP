@@ -8,12 +8,15 @@ int main()
     int windowsize[2] = {1600,1000};
     sf::RenderWindow * window = new sf::RenderWindow(sf::VideoMode(windowsize[0], windowsize[1]), "SFML window");
     Ship *pShip = new Ship(windowsize[0]/2, windowsize[1]/2, 20.f, 30.f, window, windowsize);
-    AsteroidFactory * astFact = AsteroidFactory::getInstance();
+    AsteroidFactory * astFact = AsteroidFactory::getInstance(pShip);
+
+    astFact->SetShip(pShip); // setting the ship and bullet vector in asteroid factory
 
     //Asteroid *ast = new Asteroid(windowsize[0]/2, windowsize[1]/2,25,5,window,windowsize);
     astFact->CreateObject(windowsize[0]/4, windowsize[1]/2,25,5,window,windowsize);
     astFact->CreateObject(windowsize[0]/2, windowsize[1]/2,25,5,window,windowsize);
     astFact->CreateObject((windowsize[0]/4)*3, windowsize[1]/2,25,5,window,windowsize);
+
 	// Start the game loop
     while (window->isOpen())
     {

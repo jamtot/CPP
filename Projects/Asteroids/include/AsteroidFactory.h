@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "Asteroid.h"
+#include "Ship.h"
+#include "Bullet.h"
 //#include <iostream>
 
 using namespace std;
@@ -23,13 +25,19 @@ class AsteroidFactory
             m_asteroids.clear();
         }
 
-        static AsteroidFactory * getInstance()
+        static AsteroidFactory * getInstance(Ship * ship)
         {
             if (m_instance == 0)
             {//if the instance is null, initialise it
                 m_instance = new AsteroidFactory();
             }
             return m_instance;
+        }
+
+        void SetShip(Ship * ship)
+        {
+            m_player_ship = ship;
+            m_bullet_vec = m_player_ship->get_bullets();
         }
 
         void Clear()
@@ -60,6 +68,21 @@ class AsteroidFactory
             m_iterator = m_asteroids.begin();
             for (; m_iterator != m_asteroids.end(); ++m_iterator)
             {
+
+                vector<Bullet>::iterator it;
+                for (it = m_bullet_vec->begin(); it != m_bullet_vec->end(); ++it)
+                {
+
+                    if ( ( ((*it).getPos()->x - (*m_iterator)->getPos()->x) * ((*it).getPos()->x - (*m_iterator)->getPos()->x) +
+                        ((*it).getPos()->y - (*m_iterator)->getPos()->y) * ((*it).getPos()->y - (*m_iterator)->getPos()->y) ) <
+                        ((*m_iterator)->getSize() * (*m_iterator)->getSize() ))
+                    {
+                        (*it).kill();
+                        (*m_iterator)->kill();
+                    }
+
+                }
+
                 if ((*m_iterator)->isAlive())
                     (*m_iterator)->update();
                 else
@@ -69,12 +92,17 @@ class AsteroidFactory
                     //cout << m_asteroids.size() << endl;
                 }
             }
+
+
         }
     protected:
     private:
         static AsteroidFactory * m_instance;
         vector<Asteroid*> m_asteroids;
         vector<Asteroid*>::iterator m_iterator;
+        Ship* m_player_ship;
+        vector<Bullet> *m_bullet_vec;
+
 };
 
 #endif // ASTEROIDFACTORY_H
