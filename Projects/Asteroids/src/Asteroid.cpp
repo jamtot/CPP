@@ -44,9 +44,6 @@ void Asteroid::update()
 {
     *m_pos+=*m_velocity;
     m_shape->setPosition(*m_pos);
-    /*if ( m_pos->x < 0-m_size || m_pos->x > m_windowsize[0]+m_size
-        || m_pos->y < 0-m_size || m_pos->y > m_windowsize[1]+m_size)
-        m_alive = false;*/
 
     if (m_pos->x < 0-m_size)
         m_pos->x = m_windowsize[0]+m_size;
