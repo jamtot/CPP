@@ -5,6 +5,7 @@
 #include "Asteroid.h"
 #include "Ship.h"
 #include "Bullet.h"
+#include "ExplosionFactory.h"
 //#include <iostream>
 
 using namespace std;
@@ -14,7 +15,7 @@ using namespace std;
 class AsteroidFactory
 {
     public:
-        AsteroidFactory() {}
+        AsteroidFactory() {expFact = ExplosionFactory::getInstance();}
 
         ~AsteroidFactory()
         {
@@ -87,6 +88,7 @@ class AsteroidFactory
                     (*m_iterator)->update();
                 else
                 {
+                    expFact->makeBoom(*((*m_iterator)->getPos()));
                     m_asteroids.erase(m_iterator);
                     --m_iterator;
                     //cout << m_asteroids.size() << endl;
@@ -102,6 +104,7 @@ class AsteroidFactory
         vector<Asteroid*>::iterator m_iterator;
         Ship* m_player_ship;
         vector<Bullet> *m_bullet_vec;
+        ExplosionFactory * expFact;
 
 };
 

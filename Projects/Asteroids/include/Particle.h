@@ -8,15 +8,22 @@ class Particle
     public:
         Particle(sf::Vector2f pos,sf::Vector2f vel, float speed, sf::RenderWindow * window)
         {
-
+            m_window = window;
             m_alive = true;
             m_speed = speed;
             m_pos = new sf::Vector2f(pos);
             m_velocity = new sf::Vector2f(vel);
-            m_shape->setSize(sf::Vector2f(1,1));
+            m_shape = new sf::RectangleShape(sf::Vector2f(1,1));
+            //m_shape->setSize(sf::Vector2f(1,1));
             m_shape->setPosition(*m_pos);
         }
-        virtual ~Particle() {}
+        virtual ~Particle()
+        {
+            delete m_window;
+            delete m_shape;
+            delete m_pos;
+            delete m_velocity;
+        }
         void update()
         {
             *m_pos+=*m_velocity*m_speed;

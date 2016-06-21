@@ -21,6 +21,8 @@ class ExplosionFactory
         void Clear();
         void makeBoom(sf::Vector2f pos);
         void SetWindow(sf::RenderWindow* window);
+        void draw();
+        void update();
     protected:
     private:
         static ExplosionFactory * m_instance;

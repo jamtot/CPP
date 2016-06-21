@@ -10,10 +10,12 @@
 1464638634 /home/jamtot/CPP/Projects/The Coding Dead/Asteroids/include/Vector.h
 	<math.h>
 
-1466076162 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
+1466527921 source:/home/jamtot/CPP/Projects/Asteroids/main.cpp
 	<SFML/Graphics.hpp>
 	"Ship.h"
 	"AsteroidFactory.h"
+	"ExplosionFactory.h"
+	"Explosion.h"
 
 1466074554 /home/jamtot/CPP/Projects/Asteroids/include/Ship.h
 	<SFML/Graphics.hpp>
@@ -46,12 +48,28 @@
 	"Asteroid.h"
 	"Funcs.h"
 
-1466076161 /home/jamtot/CPP/Projects/Asteroids/include/AsteroidFactory.h
+1466528423 /home/jamtot/CPP/Projects/Asteroids/include/AsteroidFactory.h
 	<vector>
 	"Asteroid.h"
 	"Ship.h"
 	"Bullet.h"
+	"ExplosionFactory.h"
 
 1464899277 source:/home/jamtot/CPP/Projects/Asteroids/src/AsteroidFactory.cpp
 	"AsteroidFactory.h"
+
+1466527722 source:/home/jamtot/CPP/Projects/Asteroids/src/ExplosionFactory.cpp
+	"ExplosionFactory.h"
+
+1466528331 /home/jamtot/CPP/Projects/Asteroids/include/ExplosionFactory.h
+	<SFML/Graphics.hpp>
+	"Explosion.h"
+
+1466527982 /home/jamtot/CPP/Projects/Asteroids/include/Explosion.h
+	<SFML/Graphics.hpp>
+	<vector>
+	"Particle.h"
+
+1466528178 /home/jamtot/CPP/Projects/Asteroids/include/Particle.h
+	<SFML/Graphics.hpp>
 
