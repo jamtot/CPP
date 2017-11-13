@@ -16,5 +16,11 @@ void Question::printall() {
 	for (char c = 'a'; iter != _answers.end(); iter++, c++)
 	{
 		cout << "\t" << c << ")" << (*iter).getAnswer() << endl;
+		if ((*iter).getCorrect()) _correct = c;
 	}
+}
+
+char Question::getAns()
+{
+	return _correct;
 }
